@@ -3,6 +3,57 @@ import org.junit.jupiter.api.Test;
 
 class TodosTest {
     @Test
+    public void multipleTasksFoundTest() {
+        SimpleTask simpleTask1 = new SimpleTask(5, "Задание про магазин"); // Находим несколько задач
+        SimpleTask simpleTask2 = new SimpleTask(6, "Купить котлету в магазине");
+        SimpleTask simpleTask3 = new SimpleTask(7, "Яйца и хлеб");
+
+        Todos todos = new Todos();
+
+        todos.add(simpleTask1);
+        todos.add(simpleTask2);
+        todos.add(simpleTask3);
+
+        Task[] expected = {simpleTask1, simpleTask2};
+        Task[] actual = todos.search("магазин");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void singleTaskFoundTest() {
+        SimpleTask simpleTask1 = new SimpleTask(5, "Задание про магазин"); // Находим ровно одну задачу
+        SimpleTask simpleTask2 = new SimpleTask(6, "Купить котлету в магазине");
+        SimpleTask simpleTask3 = new SimpleTask(7, "Яйца и хлеб");
+
+        Todos todos = new Todos();
+
+        todos.add(simpleTask1);
+        todos.add(simpleTask2);
+        todos.add(simpleTask3);
+
+        Task[] expected = {simpleTask2};
+        Task[] actual = todos.search("котлету");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void noTasksFoundTest() {
+        SimpleTask simpleTask1 = new SimpleTask(5, "Задание про магазин"); // не находим ни одной задачи
+        SimpleTask simpleTask2 = new SimpleTask(6, "Купить котлету в магазине");
+        SimpleTask simpleTask3 = new SimpleTask(7, "Яйца и хлеб");
+
+        Todos todos = new Todos();
+
+        todos.add(simpleTask1);
+        todos.add(simpleTask2);
+        todos.add(simpleTask3);
+
+        Task[] expected = {};
+        Task[] actual = todos.search("морковка");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void TestAddThreeTasksOfDifferentType() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
 

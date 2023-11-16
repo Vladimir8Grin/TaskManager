@@ -2,7 +2,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class MeetingTest {
-    //Полирнуть перед отправкой!
 
     @Test
     public void testMatchesWhenQueryMatchesTopicReturnsTrue() {
@@ -39,4 +38,5 @@ class MeetingTest {
 
         Assertions.assertFalse(result);
     }
+
 }
